@@ -107,7 +107,11 @@ class MyAdapter(
 
         private fun buildDivider(context: Context): View {
             val typedValue = TypedValue()
-            context.theme.resolveAttribute(R.attr.colorOutline, typedValue, true)
+            context.theme.resolveAttribute(
+                com.google.android.material.R.attr.colorOutline,
+                typedValue,
+                true
+            )
             return View(context).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
