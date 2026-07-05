@@ -9,4 +9,6 @@
     app:tabBackground="@android:color/transparent"
     app:tabRippleColor="@android:color/transparent"
     app:tabMaxWidth="100dp"
-    app:tabMinWidth="10dp" />
+    app:tabMinWidth="10dp"
+    app:tabIndicatorFullWidth="false"
+    app:tabIndicatorHeight="3dp" />

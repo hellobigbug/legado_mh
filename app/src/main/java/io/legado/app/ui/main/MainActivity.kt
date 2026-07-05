@@ -1,21 +1,18 @@
-@file:Suppress("DEPRECATION")
-
 package io.legado.app.ui.main
 
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.MenuItem
 import android.view.MotionEvent
-import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
 import androidx.core.view.postDelayed
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentStateAdapter
 import androidx.lifecycle.lifecycleScope
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.legado.app.BuildConfig
 import io.legado.app.R
@@ -41,10 +38,8 @@ import io.legado.app.ui.main.explore.ExploreFragment
 import io.legado.app.ui.main.my.MyFragment
 import io.legado.app.ui.widget.dialog.TextDialog
 import io.legado.app.utils.hideSoftInput
-import io.legado.app.utils.isCreated
 import io.legado.app.utils.navigationBarHeight
 import io.legado.app.utils.observeEvent
-import io.legado.app.utils.setEdgeEffectColor
 import io.legado.app.utils.shouldHideSoftInput
 import io.legado.app.utils.showDialogFragment
 import io.legado.app.utils.toastOnUi
@@ -76,7 +71,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
     private var bottomMenuCount = 4
     private val realPositions = arrayOf(idBookshelf1, idExplore, idMy)
     private val adapter by lazy {
-        TabFragmentPageAdapter(supportFragmentManager)
+        TabFragmentPagerAdapter(this)
     }
     private val onUpBooksBadgeView by lazy {
         binding.bottomNavigationView.addBadgeView(0)
@@ -173,7 +168,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
         viewPagerMain.setEdgeEffectColor(primaryColor)
         viewPagerMain.offscreenPageLimit = 3
         viewPagerMain.adapter = adapter
-        viewPagerMain.addOnPageChangeListener(PageChangeCallback())
+        viewPagerMain.registerOnPageChangeCallback(PageChangeCallback())
         bottomNavigationView.elevation = elevation
         bottomNavigationView.setOnNavigationItemSelectedListener(this@MainActivity)
         bottomNavigationView.setOnNavigationItemReselectedListener(this@MainActivity)
@@ -377,7 +372,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
         return realPositions[position]
     }
 
-    private inner class PageChangeCallback : ViewPager.SimpleOnPageChangeListener() {
+    private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {
 
         override fun onPageSelected(position: Int) {
             pagePosition = position
@@ -387,46 +382,33 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
 
     }
 
-    @Suppress("DEPRECATION")
-    private inner class TabFragmentPageAdapter(fm: FragmentManager) :
-        FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private inner class TabFragmentPagerAdapter(fa: FragmentActivity) :
+        FragmentStateAdapter(fa) {
 
-        private fun getId(position: Int): Int {
-            return getFragmentId(position)
+        override fun getItemCount(): Int {
+            return bottomMenuCount
         }
 
-        override fun getItemPosition(any: Any): Int {
-            val position = (any as MainFragmentInterface).position
-                ?: return POSITION_NONE
-            val fragmentId = getId(position)
-            if ((fragmentId == idBookshelf1 && any is BookshelfFragment1)
-                || (fragmentId == idExplore && any is ExploreFragment)
-                || (fragmentId == idMy && any is MyFragment)
-            ) {
-                return POSITION_UNCHANGED
+        override fun getItemId(position: Int): Long {
+            return getFragmentId(position).toLong()
+        }
+
+        override fun containsItem(itemId: Long): Boolean {
+            val id = itemId.toInt()
+            for (i in 0 until bottomMenuCount) {
+                if (realPositions[i] == id) return true
             }
-            return POSITION_NONE
+            return false
         }
 
-        override fun getItem(position: Int): Fragment {
-            return when (getId(position)) {
+        override fun createFragment(position: Int): Fragment {
+            val fragmentId = getFragmentId(position)
+            val fragment = when (fragmentId) {
                 idBookshelf1 -> BookshelfFragment1(position)
                 idExplore -> ExploreFragment(position)
                 else -> MyFragment(position)
             }
-        }
-
-        override fun getCount(): Int {
-            return bottomMenuCount
-        }
-
-        override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            var fragment = super.instantiateItem(container, position) as Fragment
-            if (fragment.isCreated && getItemPosition(fragment) == POSITION_NONE) {
-                destroyItem(container, position, fragment)
-                fragment = super.instantiateItem(container, position) as Fragment
-            }
-            fragmentMap[getId(position)] = fragment
+            fragmentMap[fragmentId] = fragment
             return fragment
         }
 
