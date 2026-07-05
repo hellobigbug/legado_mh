@@ -16,11 +16,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_icon"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        app:tint="@color/accent"
+        app:tint="?attr/colorPrimary"
         tools:ignore="TextContrastCheck"
         tools:src="@drawable/ic_cfg_source" />
 
@@ -33,21 +33,18 @@
 
         <TextView
             android:id="@+id/tv_title"
+            style="@style/Legado.Text.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:textColor="@color/primaryText"
             android:textSize="15sp"
             tools:text="@string/book_source_manage" />
 
         <TextView
             android:id="@+id/tv_summary"
+            style="@style/Legado.Text.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:includeFontPadding="false"
-            android:textColor="@color/tv_text_summary"
-            android:textSize="12sp"
+            android:layout_marginTop="3dp"
             android:visibility="gone"
             tools:text="@string/book_source_manage_desc"
             tools:visibility="visible" />
@@ -55,11 +52,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_arrow"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginStart="8dp"
         android:contentDescription="@null"
         android:src="@drawable/ic_arrow_right"
-        app:tint="@color/tv_text_summary" />
+        app:tint="?attr/colorOnSurfaceVariant" />
 
 </LinearLayout>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_search"
+    style="@style/Legado.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="12dp"
@@ -10,27 +11,20 @@
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
     android:clickable="true"
-    android:focusable="true"
-    app:cardBackgroundColor="?attr/colorSurface"
-    app:cardElevation="1dp"
-    app:cardUseCompatPadding="false"
-    app:rippleColor="?attr/colorPrimaryContainer"
-    app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
-    app:strokeColor="@color/transparent"
-    app:strokeWidth="0dp">
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="8dp">
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp">
 
         <io.legado.app.ui.widget.image.CoverImageView
             android:id="@+id/iv_cover"
-            android:layout_width="50dp"
-            android:layout_height="70dp"
+            android:layout_width="52dp"
+            android:layout_height="74dp"
             android:contentDescription="@string/img_cover"
             android:scaleType="centerCrop"
             android:src="@drawable/image_cover_default"
@@ -61,30 +55,27 @@
 
         <TextView
             android:id="@+id/tv_name"
+            style="@style/Legado.Text.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/app_name"
-            android:textColor="@color/primaryText"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@id/bv_originCount"
             app:layout_constraintStart_toEndOf="@+id/iv_in_bookshelf"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_author"
+            style="@style/Legado.Text.Body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="4dp"
             android:ellipsize="end"
-            android:includeFontPadding="false"
             android:lines="1"
             android:text="@string/author"
-            android:textColor="@color/tv_text_summary"
-            android:textSize="11sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/bv_originCount"
             app:layout_constraintStart_toStartOf="@id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
@@ -101,14 +92,13 @@
 
         <TextView
             android:id="@+id/tv_lasted"
+            style="@style/Legado.Text.Caption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
-            android:includeFontPadding="false"
             android:lines="1"
             android:text="@string/last_read"
-            android:textColor="@color/tv_text_summary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/tv_author"
             app:layout_constraintStart_toStartOf="@id/tv_author"
@@ -116,14 +106,13 @@
 
         <io.legado.app.ui.widget.text.MultilineTextView
             android:id="@+id/tv_introduce"
+            style="@style/Legado.Text.Caption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
-            android:includeFontPadding="false"
             android:maxLines="2"
             android:text="@string/book_intro"
-            android:textColor="@color/tv_text_summary"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tv_author"

@@ -1,13 +1,13 @@
 package io.legado.app.ui.main.my
 
 import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.legado.app.R
 import io.legado.app.utils.dpToPx
@@ -106,14 +106,16 @@ class MyAdapter(
         }
 
         private fun buildDivider(context: Context): View {
+            val typedValue = TypedValue()
+            context.theme.resolveAttribute(R.attr.colorOutline, typedValue, true)
             return View(context).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     1.dpToPx()
                 ).apply {
-                    marginStart = 60.dpToPx()
+                    marginStart = 58.dpToPx()
                 }
-                setBackgroundColor(ContextCompat.getColor(context, R.color.bg_divider_line))
+                setBackgroundColor(typedValue.data)
             }
         }
     }
