@@ -30,6 +30,7 @@ class LegadoGlideModule : AppGlideModule() {
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         super.applyOptions(context, builder)
-        builder.setDiskCache(InternalCacheDiskCacheFactory(context, 1024 * 1024 * 1000))
+        // 磁盘缓存 256MB（原 1GB 过大，挤占用户存储）
+        builder.setDiskCache(InternalCacheDiskCacheFactory(context, 1024L * 1024L * 256L))
     }
 }
