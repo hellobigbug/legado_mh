@@ -10,7 +10,6 @@ import io.legado.app.data.entities.BaseSource
 import io.legado.app.data.entities.Book
 import io.legado.app.data.entities.BookChapter
 import io.legado.app.data.entities.BookSource
-import io.legado.app.data.entities.RssArticle
 import io.legado.app.help.CacheManager
 import io.legado.app.help.JsExtensions
 import io.legado.app.help.http.CookieStore
@@ -46,7 +45,6 @@ class AnalyzeRule(
 ) : JsExtensions {
 
     val book get() = ruleData as? BaseBook
-    val rssArticle get() = ruleData as? RssArticle
 
     var chapter: BookChapter? = null
     var nextChapterUrl: String? = null

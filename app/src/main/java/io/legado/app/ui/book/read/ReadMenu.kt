@@ -49,7 +49,6 @@ import io.legado.app.utils.putPrefBoolean
 import io.legado.app.utils.startActivity
 import io.legado.app.utils.visible
 import splitties.views.onClick
-import splitties.views.onLongClick
 
 /**
  * 阅读界面菜单
@@ -218,8 +217,6 @@ class ReadMenu @JvmOverloads constructor(
         tvNext.setTextColor(textColor)
         ivCatalog.setColorFilter(textColor, PorterDuff.Mode.SRC_IN)
         tvCatalog.setTextColor(textColor)
-        ivReadAloud.setColorFilter(textColor, PorterDuff.Mode.SRC_IN)
-        tvReadAloud.setTextColor(textColor)
         ivFont.setColorFilter(textColor, PorterDuff.Mode.SRC_IN)
         tvFont.setTextColor(textColor)
         ivSetting.setColorFilter(textColor, PorterDuff.Mode.SRC_IN)
@@ -480,17 +477,6 @@ class ReadMenu @JvmOverloads constructor(
             }
         }
 
-        //朗读
-        llReadAloud.setOnClickListener {
-            runMenuOut {
-                callBack.onClickReadAloud()
-            }
-        }
-        llReadAloud.onLongClick {
-            runMenuOut {
-                callBack.showReadAloudDialog()
-            }
-        }
         //界面
         llFont.setOnClickListener {
             runMenuOut {
@@ -587,9 +573,7 @@ class ReadMenu @JvmOverloads constructor(
         fun openBookInfoActivity()
         fun showReadStyle()
         fun showMoreSetting()
-        fun showReadAloudDialog()
         fun upSystemUiVisibility()
-        fun onClickReadAloud()
         fun showHelp()
         fun showLogin()
         fun payAction()

@@ -199,13 +199,7 @@ dependencies {
     implementation(libs.lifecycle.service)
 
     //media
-    implementation(libs.media.media)
-    // For media playback using ExoPlayer
-    implementation(libs.media3.exoplayer)
-    // For loading data using the OkHttp network stack
-    implementation(libs.media3.datasource.okhttp)
-    // For exposing and controlling media sessions
-    //implementation "androidx.media3:media3-session:$media3_version"
+    //media3/ExoPlayer 已随朗读/音频模块移除
 
     //Splitties
     implementation(libs.splitties.appctx)
@@ -241,18 +235,11 @@ dependencies {
     implementation(libs.glide.okhttp)
     ksp(libs.glide.ksp)
 
-    //Svg
-    implementation(libs.androidsvg)
-    //Glide svg plugin
-    implementation(libs.glide.svg)
+    //Svg/Glide svg plugin 已随漫画模块移除
 
     //webServer
     implementation(libs.nanohttpd.nanohttpd)
     implementation(libs.nanohttpd.websocket)
-
-    //二维码
-    //noinspection GradleDependency
-    implementation(libs.zxing.lite)
 
     //颜色选择
     implementation(libs.colorpicker)
@@ -263,11 +250,7 @@ dependencies {
     //apache
     implementation(libs.commons.text)
 
-    //MarkDown
-    implementation(libs.markwon.core)
-    implementation(libs.markwon.image.glide)
-    implementation(libs.markwon.ext.tables)
-    implementation(libs.markwon.html)
+    //MarkDown 已随 RSS 模块移除
 
     //转换繁体
     implementation(libs.quick.chinese.transfer.core)

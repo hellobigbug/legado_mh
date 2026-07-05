@@ -84,19 +84,6 @@ inline fun <reified T : Activity> Fragment.startActivity(
     startActivity(Intent(requireContext(), T::class.java).apply(configIntent))
 }
 
-inline fun <reified A : Activity, reified M : Activity> Fragment.startReadOrMangaActivity(
-    book: Book,
-    configIntent: Intent.() -> Unit = {},
-) {
-    val intent = Intent(
-        requireActivity(),
-        if (book.isImage && AppConfig.showMangaUi) M::class.java else A::class.java
-    )
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    intent.apply(configIntent)
-    startActivity(intent)
-}
-
 fun Fragment.showHelp(fileName: String) {
     val mdText = String(requireContext().assets.open("web/help/md/${fileName}.md").readBytes())
     showDialogFragment(TextDialog(getString(R.string.help), mdText, TextDialog.Mode.MD))

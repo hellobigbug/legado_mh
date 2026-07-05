@@ -15,7 +15,6 @@ import io.legado.app.constant.PageAnim
 import io.legado.app.data.entities.BookProgress
 import io.legado.app.help.config.AppConfig
 import io.legado.app.help.config.ReadBookConfig
-import io.legado.app.model.ReadAloud
 import io.legado.app.model.ReadBook
 import io.legado.app.ui.book.read.ContentEditDialog
 import io.legado.app.ui.book.read.page.api.DataSource
@@ -440,8 +439,6 @@ class ReadView(context: Context, attrs: AttributeSet) :
             2 -> pageDelegate?.prevPageByAnim(defaultAnimationSpeed)
             3 -> ReadBook.moveToNextChapter(true)
             4 -> ReadBook.moveToPrevChapter(upContent = true, toLast = false)
-            5 -> ReadAloud.prevParagraph(context)
-            6 -> ReadAloud.nextParagraph(context)
             7 -> callBack.addBookmark()
             8 -> activity?.showDialogFragment(ContentEditDialog())
             9 -> callBack.changeReplaceRuleState()

@@ -15,7 +15,6 @@ import io.legado.app.help.config.AppConfig
 import io.legado.app.lib.dialogs.alert
 import io.legado.app.lib.permission.Permissions
 import io.legado.app.lib.permission.PermissionsCompat
-import io.legado.app.ui.book.manga.ReadMangaActivity
 import io.legado.app.ui.book.read.ReadBookActivity
 import io.legado.app.ui.file.HandleFileContract
 import io.legado.app.utils.FileUtils
@@ -27,7 +26,6 @@ import io.legado.app.utils.isContentScheme
 import io.legado.app.utils.readUri
 import io.legado.app.utils.showDialogFragment
 import io.legado.app.utils.startActivity
-import io.legado.app.utils.startReadOrMangaActivity
 import io.legado.app.utils.toastOnUi
 import io.legado.app.utils.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.Dispatchers.IO
@@ -75,12 +73,9 @@ class FileAssociationActivity :
         viewModel.successLive.observe(this) {
             when (it.first) {
                 "bookSource" -> showDialogFragment(ImportBookSourceDialog(it.second, true))
-                "rssSource" -> showDialogFragment(ImportRssSourceDialog(it.second, true))
                 "replaceRule" -> showDialogFragment(ImportReplaceRuleDialog(it.second, true))
-                "httpTts" -> showDialogFragment(ImportHttpTtsDialog(it.second, true))
                 "theme" -> showDialogFragment(ImportThemeDialog(it.second, true))
                 "txtRule" -> showDialogFragment(ImportTxtTocRuleDialog(it.second, true))
-                "dictRule" -> showDialogFragment(ImportDictRuleDialog(it.second, true))
             }
         }
         viewModel.errorLive.observe(this) {
@@ -92,7 +87,7 @@ class FileAssociationActivity :
         }
         viewModel.openBookLiveData.observe(this) {
             binding.rotateLoading.gone()
-            startReadOrMangaActivity<ReadBookActivity, ReadMangaActivity>(it) {
+            startActivity<ReadBookActivity> {
                 putExtra("bookUrl", it.bookUrl)
             }
             finish()

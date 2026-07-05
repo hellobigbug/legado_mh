@@ -20,6 +20,7 @@ object DatabaseMigrations {
             migration_31_32, migration_32_33, migration_33_34, migration_34_35,
             migration_35_36, migration_36_37, migration_37_38, migration_38_39,
             migration_39_40, migration_40_41, migration_41_42, migration_42_43,
+            migration_75_76,
         )
     }
 
@@ -370,5 +371,20 @@ object DatabaseMigrations {
         columnName = "enabledReview"
     )
     class Migration_64_65 : AutoMigrationSpec
+
+    /**
+     * 阶段1.1 精简模块：移除 RSS / 漫画 HttpTTS / 字典 数据表。
+     * 注意：表中数据将永久丢失，旧版本用户升级后 RSS 源与字典规则将不可用。
+     */
+    private val migration_75_76 = object : Migration(75, 76) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("DROP TABLE IF EXISTS rssSources")
+            database.execSQL("DROP TABLE IF EXISTS rssArticles")
+            database.execSQL("DROP TABLE IF EXISTS rssReadRecords")
+            database.execSQL("DROP TABLE IF EXISTS rssStars")
+            database.execSQL("DROP TABLE IF EXISTS dictRule")
+            database.execSQL("DROP TABLE IF EXISTS httpTTS")
+        }
+    }
 
 }

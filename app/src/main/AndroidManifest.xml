@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission
@@ -18,7 +17,6 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application
@@ -53,66 +51,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- 图标2 -->
-        <activity
-            android:name=".ui.welcome.Launcher2"
-            android:enabled="false"
-            android:exported="true"
-            android:icon="@mipmap/launcher2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!-- 图标3 -->
-        <activity
-            android:name=".ui.welcome.Launcher3"
-            android:enabled="false"
-            android:exported="true"
-            android:icon="@mipmap/launcher3">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!-- 图标4 -->
-        <activity
-            android:name=".ui.welcome.Launcher4"
-            android:enabled="false"
-            android:exported="true"
-            android:icon="@mipmap/launcher4">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!-- 图标5 -->
-        <activity
-            android:name=".ui.welcome.Launcher5"
-            android:enabled="false"
-            android:exported="true"
-            android:icon="@mipmap/launcher5">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!-- 图标6 -->
-        <activity
-            android:name=".ui.welcome.Launcher6"
-            android:enabled="false"
-            android:exported="true"
-            android:icon="@mipmap/launcher6">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <!-- 主界面 -->
         <activity
             android:name=".ui.main.MainActivity"
@@ -135,19 +73,6 @@
                 android:resource="@xml/spen_remote_actions" />
         </activity>
 
-        <!-- 阅读漫画界面 -->
-        <activity
-            android:name=".ui.book.manga.ReadMangaActivity"
-            android:exported="false"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="com.samsung.android.support.REMOTE_ACTION" />
-            </intent-filter>
-
-            <meta-data
-                android:name="com.samsung.android.support.REMOTE_ACTION"
-                android:resource="@xml/spen_remote_actions" />
-        </activity>
         <!-- 书籍详情页 -->
         <activity
             android:name=".ui.book.info.BookInfoActivity"
@@ -156,31 +81,13 @@
         <activity
             android:name=".ui.book.info.edit.BookInfoEditActivity"
             android:launchMode="singleTask" />
-        <!-- 音频播放界面 -->
-        <activity
-            android:name="io.legado.app.ui.book.audio.AudioPlayActivity"
-            android:launchMode="singleTask" />
         <!-- 授权界面 -->
         <activity
             android:name="io.legado.app.lib.permission.PermissionActivity"
             android:theme="@style/Activity.Permission" />
-        <!-- 二维码扫描 -->
-        <activity
-            android:name=".ui.qrcode.QrCodeActivity"
-            android:launchMode="singleTask" />
-        <!-- 规则订阅 -->
-        <activity
-            android:name=".ui.rss.subscription.RuleSubActivity"
-            android:launchMode="singleTask" />
         <!-- 书源编辑 -->
         <activity
             android:name=".ui.book.source.edit.BookSourceEditActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <!-- 订阅源编辑 -->
-        <activity
-            android:name=".ui.rss.source.edit.RssSourceEditActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize|stateHidden" />
@@ -206,11 +113,6 @@
         <!-- 书源管理 -->
         <activity
             android:name=".ui.book.source.manage.BookSourceActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind" />
-        <!-- 订阅源管理 -->
-        <activity
-            android:name=".ui.rss.source.manage.RssSourceActivity"
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
         <!-- txt目录规则管理 -->
@@ -243,16 +145,6 @@
             android:name=".ui.book.searchContent.SearchContentActivity"
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
-        <!-- RSS条目 -->
-        <activity
-            android:name=".ui.rss.article.RssSortActivity"
-            android:launchMode="singleTop" />
-        <!-- RSS阅读 -->
-        <activity
-            android:name=".ui.rss.read.ReadRssActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleTop" />
         <!-- 导入书籍 -->
         <activity
             android:name=".ui.book.import.local.ImportBookActivity"
@@ -264,14 +156,6 @@
         <!-- 发现界面 -->
         <activity
             android:name=".ui.book.explore.ExploreShowActivity"
-            android:launchMode="singleTop" />
-        <!-- 订阅源调试 -->
-        <activity
-            android:name=".ui.rss.source.debug.RssSourceDebugActivity"
-            android:launchMode="singleTop" />
-        <!-- Rss收藏 -->
-        <activity
-            android:name=".ui.rss.favorites.RssFavoritesActivity"
             android:launchMode="singleTop" />
         <!-- 书签 -->
         <activity
@@ -295,16 +179,6 @@
         <!-- 阅读记录 -->
         <activity
             android:name=".ui.about.ReadRecordActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true" />
-        <!-- 字典管理 -->
-        <activity
-            android:name=".ui.dict.rule.DictRuleActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true" />
-        <!-- 文件管理 -->
-        <activity
-            android:name=".ui.file.FileManageActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
         <!-- 选择文件 -->
@@ -476,25 +350,8 @@
             </intent-filter>
         </service>
         <service
-            android:name=".service.TTSReadAloudService"
-            android:foregroundServiceType="mediaPlayback" />
-        <service
-            android:name=".service.HttpReadAloudService"
-            android:foregroundServiceType="mediaPlayback" />
-        <service
-            android:name=".service.AudioPlayService"
-            android:foregroundServiceType="mediaPlayback" />
-        <service
             android:name=".service.DownloadService"
             android:foregroundServiceType="dataSync" />
-
-        <receiver
-            android:name=".receiver.MediaButtonReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
-            </intent-filter>
-        </receiver>
 
         <provider
             android:name=".api.ReaderProvider"
@@ -536,9 +393,6 @@
             <data
                 android:mimeType="*/*"
                 android:scheme="*" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT" />

@@ -25,11 +25,9 @@ import io.legado.app.help.book.simulatedTotalChapterNum
 import io.legado.app.help.config.AppConfig
 import io.legado.app.help.coroutine.Coroutine
 import io.legado.app.model.ImageProvider
-import io.legado.app.model.ReadAloud
 import io.legado.app.model.ReadBook
 import io.legado.app.model.localBook.LocalBook
 import io.legado.app.model.webBook.WebBook
-import io.legado.app.service.BaseReadAloudService
 import io.legado.app.ui.book.read.page.entities.TextChapter
 import io.legado.app.ui.book.searchContent.SearchResult
 import io.legado.app.utils.DocumentUtils
@@ -129,7 +127,7 @@ class ReadBookViewModel(application: Application) : BaseViewModel(application) {
         if (ReadBook.chapterChanged) {
             // 有章节跳转不同步阅读进度
             ReadBook.chapterChanged = false
-        } else if (!isSameBook || !BaseReadAloudService.isRun) {
+        } else if (!isSameBook) {
             if (AppConfig.syncBookProgressPlus) {
                 ReadBook.syncProgress({ progress -> ReadBook.callBack?.sureNewProgress(progress) })
             } else {
@@ -551,9 +549,6 @@ class ReadBookViewModel(application: Application) : BaseViewModel(application) {
 
     override fun onCleared() {
         super.onCleared()
-        if (BaseReadAloudService.isRun && BaseReadAloudService.pause) {
-            ReadAloud.stop(context)
-        }
     }
 
 }

@@ -25,23 +25,14 @@ class OnLineImportActivity :
                 "bookSource" -> showDialogFragment(
                     ImportBookSourceDialog(it.second, true)
                 )
-                "rssSource" -> showDialogFragment(
-                    ImportRssSourceDialog(it.second, true)
-                )
                 "replaceRule" -> showDialogFragment(
                     ImportReplaceRuleDialog(it.second, true)
-                )
-                "httpTts" -> showDialogFragment(
-                    ImportHttpTtsDialog(it.second, true)
                 )
                 "theme" -> showDialogFragment(
                     ImportThemeDialog(it.second, true)
                 )
                 "txtRule" -> showDialogFragment(
                     ImportTxtTocRuleDialog(it.second, true)
-                )
-                "dictRule" -> showDialogFragment(
-                    ImportDictRuleDialog(it.second, true)
                 )
             }
         }
@@ -59,22 +50,14 @@ class OnLineImportActivity :
                     ImportBookSourceDialog(url, true)
                 )
 
-                "/rssSource" -> showDialogFragment(
-                    ImportRssSourceDialog(url, true)
-                )
-
                 "/replaceRule" -> showDialogFragment(
                     ImportReplaceRuleDialog(url, true)
                 )
+
                 "/textTocRule" -> showDialogFragment(
                     ImportTxtTocRuleDialog(url, true)
                 )
-                "/httpTTS" -> showDialogFragment(
-                    ImportHttpTtsDialog(url, true)
-                )
-                "/dictRule" -> showDialogFragment(
-                    ImportDictRuleDialog(url, true)
-                )
+
                 "/theme" -> showDialogFragment(
                     ImportThemeDialog(url, true)
                 )
@@ -87,9 +70,6 @@ class OnLineImportActivity :
                 "/importonline" -> when (it.host) {
                     "booksource" -> showDialogFragment(
                         ImportBookSourceDialog(url, true)
-                    )
-                    "rsssource" -> showDialogFragment(
-                        ImportRssSourceDialog(url, true)
                     )
                     "replace" -> showDialogFragment(
                         ImportReplaceRuleDialog(url, true)

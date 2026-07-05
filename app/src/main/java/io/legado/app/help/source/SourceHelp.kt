@@ -3,7 +3,6 @@ package io.legado.app.help.source
 import io.legado.app.data.appDb
 import io.legado.app.data.entities.BaseSource
 import io.legado.app.data.entities.BookSource
-import io.legado.app.data.entities.RssSource
 import io.legado.app.utils.EncoderUtils
 import io.legado.app.utils.NetworkUtils
 import io.legado.app.utils.splitNotBlank
@@ -26,19 +25,6 @@ object SourceHelp {
     fun getSource(key: String?): BaseSource? {
         key ?: return null
         return appDb.bookSourceDao.getBookSource(key)
-            ?: appDb.rssSourceDao.getByKey(key)
-    }
-
-    fun insertRssSource(vararg rssSources: RssSource) {
-        val rssSourcesGroup = rssSources.groupBy {
-            is18Plus(it.sourceUrl)
-        }
-        rssSourcesGroup[true]?.forEach {
-            appCtx.toastOnUi("${it.sourceName}是18+网址,禁止导入.")
-        }
-        rssSourcesGroup[false]?.let {
-            appDb.rssSourceDao.insert(*it.toTypedArray())
-        }
     }
 
     fun insertBookSource(vararg bookSources: BookSource) {

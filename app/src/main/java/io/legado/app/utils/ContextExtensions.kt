@@ -56,17 +56,6 @@ inline fun <reified A : Activity> Context.startActivity(configIntent: Intent.() 
     startActivity(intent)
 }
 
-inline fun <reified A : Activity, reified M : Activity> Context.startReadOrMangaActivity(
-    book: Book,
-    configIntent: Intent.() -> Unit = {},
-) {
-    val intent =
-        Intent(this, if (book.isImage && AppConfig.showMangaUi) M::class.java else A::class.java)
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    intent.apply(configIntent)
-    startActivity(intent)
-}
-
 
 inline fun <reified T : Service> Context.startService(configIntent: Intent.() -> Unit = {}) {
     startService(Intent(this, T::class.java).apply(configIntent))

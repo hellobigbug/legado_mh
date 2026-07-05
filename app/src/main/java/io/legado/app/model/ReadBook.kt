@@ -25,7 +25,6 @@ import io.legado.app.help.coroutine.Coroutine
 import io.legado.app.help.globalExecutor
 import io.legado.app.model.localBook.TextFile
 import io.legado.app.model.webBook.WebBook
-import io.legado.app.service.BaseReadAloudService
 import io.legado.app.service.CacheBookService
 import io.legado.app.ui.book.read.page.entities.TextChapter
 import io.legado.app.ui.book.read.page.provider.ChapterProvider
@@ -461,29 +460,8 @@ object ReadBook : CoroutineScope by MainScope() {
      */
     private fun curPageChanged(pageChanged: Boolean = false) {
         callBack?.pageChanged()
-        curTextChapter?.let {
-            if (BaseReadAloudService.isRun && it.isCompleted) {
-                val scrollPageAnim = pageAnim() == 3
-                if (scrollPageAnim && pageChanged) {
-                    ReadAloud.pause(appCtx)
-                } else {
-                    readAloud(!BaseReadAloudService.pause)
-                }
-            }
-        }
         upReadTime()
         preDownload()
-    }
-
-    /**
-     * 朗读
-     */
-    fun readAloud(play: Boolean = true, startPos: Int = 0) {
-        book ?: return
-        val textChapter = curTextChapter ?: return
-        if (textChapter.isCompleted) {
-            ReadAloud.play(appCtx, play, startPos = startPos)
-        }
     }
 
     /**

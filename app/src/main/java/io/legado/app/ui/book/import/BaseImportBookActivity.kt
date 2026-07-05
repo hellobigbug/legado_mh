@@ -15,7 +15,6 @@ import io.legado.app.lib.dialogs.alert
 import io.legado.app.lib.dialogs.selector
 import io.legado.app.lib.theme.primaryTextColor
 import io.legado.app.model.localBook.LocalBook
-import io.legado.app.ui.book.manga.ReadMangaActivity
 import io.legado.app.ui.book.read.ReadBookActivity
 import io.legado.app.ui.file.HandleFileContract
 import io.legado.app.utils.ArchiveUtils
@@ -23,7 +22,6 @@ import io.legado.app.utils.FileDoc
 import io.legado.app.utils.applyTint
 import io.legado.app.utils.hideSoftInput
 import io.legado.app.utils.shouldHideSoftInput
-import io.legado.app.utils.startReadOrMangaActivity
 import io.legado.app.utils.toastOnUi
 import io.legado.app.utils.viewbindingdelegate.viewBinding
 import kotlin.coroutines.resume
@@ -99,7 +97,7 @@ abstract class BaseImportBookActivity<VM : ViewModel> : VMBaseActivity<ActivityI
     abstract fun onSearchTextChange(newText: String?)
 
     protected fun startReadBook(book: Book) {
-        startReadOrMangaActivity<ReadBookActivity, ReadMangaActivity>(book) {
+        startActivity<ReadBookActivity> {
             putExtra("bookUrl", book.bookUrl)
         }
     }

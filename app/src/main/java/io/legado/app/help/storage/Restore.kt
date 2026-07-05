@@ -13,13 +13,9 @@ import io.legado.app.data.entities.Book
 import io.legado.app.data.entities.BookGroup
 import io.legado.app.data.entities.BookSource
 import io.legado.app.data.entities.Bookmark
-import io.legado.app.data.entities.DictRule
-import io.legado.app.data.entities.HttpTTS
 import io.legado.app.data.entities.KeyboardAssist
 import io.legado.app.data.entities.ReadRecord
 import io.legado.app.data.entities.ReplaceRule
-import io.legado.app.data.entities.RssSource
-import io.legado.app.data.entities.RssStar
 import io.legado.app.data.entities.RuleSub
 import io.legado.app.data.entities.SearchKeyword
 import io.legado.app.data.entities.Server
@@ -136,12 +132,6 @@ object Restore {
                 ImportOldData.importOldSource(json)
             }
         }
-        fileToListT<RssSource>(path, "rssSources.json")?.let {
-            appDb.rssSourceDao.insert(*it.toTypedArray())
-        }
-        fileToListT<RssStar>(path, "rssStar.json")?.let {
-            appDb.rssStarDao.insert(*it.toTypedArray())
-        }
         fileToListT<ReplaceRule>(path, "replaceRule.json")?.let {
             appDb.replaceRuleDao.insert(*it.toTypedArray())
         }
@@ -153,12 +143,6 @@ object Restore {
         }
         fileToListT<TxtTocRule>(path, "txtTocRule.json")?.let {
             appDb.txtTocRuleDao.insert(*it.toTypedArray())
-        }
-        fileToListT<HttpTTS>(path, "httpTTS.json")?.let {
-            appDb.httpTTSDao.insert(*it.toTypedArray())
-        }
-        fileToListT<DictRule>(path, "dictRule.json")?.let {
-            appDb.dictRuleDao.insert(*it.toTypedArray())
         }
         fileToListT<KeyboardAssist>(path, "keyboardAssists.json")?.let {
             appDb.keyboardAssistsDao.insert(*it.toTypedArray())

@@ -4,7 +4,6 @@ import io.legado.app.constant.AppLog
 import io.legado.app.data.entities.Book
 import io.legado.app.data.entities.BaseSource
 import io.legado.app.data.entities.BookSource
-import io.legado.app.data.entities.RssSource
 import java.io.InputStream
 import java.io.ByteArrayInputStream
 
@@ -61,7 +60,6 @@ object ImageUtils {
         return when (source) {
             is BookSource ->
                 if (isCover) source.coverDecodeJs else source.getContentRule().imageDecode
-            is RssSource -> source.coverDecodeJs
             else -> null
         }
     }

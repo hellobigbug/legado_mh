@@ -26,8 +26,6 @@ import io.legado.app.exception.NoStackTraceException
 import io.legado.app.help.AppWebDav
 import io.legado.app.help.book.addType
 import io.legado.app.help.book.getRemoteUrl
-import io.legado.app.help.book.isAudio
-import io.legado.app.help.book.isImage
 import io.legado.app.help.book.isLocal
 import io.legado.app.help.book.isLocalTxt
 import io.legado.app.help.book.isWebFile
@@ -43,12 +41,10 @@ import io.legado.app.lib.theme.getPrimaryTextColor
 import io.legado.app.model.BookCover
 import io.legado.app.model.remote.RemoteBookWebDav
 import io.legado.app.ui.about.AppLogDialog
-import io.legado.app.ui.book.audio.AudioPlayActivity
 import io.legado.app.ui.book.changecover.ChangeCoverDialog
 import io.legado.app.ui.book.changesource.ChangeBookSourceDialog
 import io.legado.app.ui.book.group.GroupSelectDialog
 import io.legado.app.ui.book.info.edit.BookInfoEditActivity
-import io.legado.app.ui.book.manga.ReadMangaActivity
 import io.legado.app.ui.book.read.ReadBookActivity
 import io.legado.app.ui.book.read.ReadBookActivity.Companion.RESULT_DELETED
 import io.legado.app.ui.book.search.SearchActivity
@@ -68,7 +64,7 @@ import io.legado.app.utils.gone
 import io.legado.app.utils.longToastOnUi
 import io.legado.app.utils.openFileUri
 import io.legado.app.utils.sendToClip
-import io.legado.app.utils.shareWithQr
+import io.legado.app.utils.share
 import io.legado.app.utils.showDialogFragment
 import io.legado.app.utils.startActivity
 import io.legado.app.utils.toastOnUi
@@ -211,9 +207,8 @@ class BookInfoActivity :
 
             R.id.menu_share_it -> {
                 viewModel.getBook()?.let {
-                    val bookJson = GSON.toJson(it)
-                    val shareStr = "${it.bookUrl}#$bookJson"
-                    shareWithQr(shareStr, it.name)
+                    val shareStr = "${it.bookUrl}#${GSON.toJson(it)}"
+                    share(shareStr)
                 }
             }
 
@@ -685,24 +680,15 @@ class BookInfoActivity :
     }
 
     private fun startReadActivity(book: Book) {
-        when {
-            book.isAudio -> readBookResult.launch(
-                Intent(this, AudioPlayActivity::class.java)
-                    .putExtra("bookUrl", book.bookUrl)
-                    .putExtra("inBookshelf", viewModel.inBookshelf)
+        readBookResult.launch(
+            Intent(
+                this,
+                ReadBookActivity::class.java
             )
-
-            else -> readBookResult.launch(
-                Intent(
-                    this,
-                    if (book.isImage && AppConfig.showMangaUi) ReadMangaActivity::class.java
-                    else ReadBookActivity::class.java
-                )
-                    .putExtra("bookUrl", book.bookUrl)
-                    .putExtra("inBookshelf", viewModel.inBookshelf)
-                    .putExtra("chapterChanged", chapterChanged)
-            )
-        }
+                .putExtra("bookUrl", book.bookUrl)
+                .putExtra("inBookshelf", viewModel.inBookshelf)
+                .putExtra("chapterChanged", chapterChanged)
+        )
     }
 
     override val oldBook: Book?

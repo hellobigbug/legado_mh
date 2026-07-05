@@ -40,11 +40,6 @@ object RuleBigDataHelp {
                     val originFile = it.getFile("origin.txt")
                     if (!originFile.exists()) {
                         FileUtils.delete(it)
-                    } else {
-                        val origin = originFile.readText()
-                        if (appDb.rssSourceDao.has(origin) != true) {
-                            FileUtils.delete(it)
-                        }
                     }
                 }
             }
