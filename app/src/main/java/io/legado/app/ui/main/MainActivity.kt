@@ -60,16 +60,17 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
 
     override val binding by viewBinding(ActivityMainBinding::inflate)
     override val viewModel by viewModels<MainViewModel>()
+    private val idBookshelf = 0
     private val idBookshelf1 = 11
     private val idExplore = 1
-    private val idMy = 3
+    private val idMy = 2
     private var exitTime: Long = 0
     private var bookshelfReselected: Long = 0
     private var exploreReselected: Long = 0
     private var pagePosition = 0
     private val fragmentMap = hashMapOf<Int, Fragment>()
-    private var bottomMenuCount = 4
-    private val realPositions = arrayOf(idBookshelf1, idExplore, idMy)
+    private var bottomMenuCount = 3
+    private val realPositions = arrayOf(idBookshelf, idExplore, idMy)
     private val adapter by lazy {
         TabFragmentPagerAdapter(this)
     }
@@ -158,7 +159,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
                 if (System.currentTimeMillis() - exploreReselected > 300) {
                     exploreReselected = System.currentTimeMillis()
                 } else {
-                    (fragmentMap[1] as? ExploreFragment)?.compressExplore()
+                    (fragmentMap[getFragmentId(realPositions.indexOf(idExplore))] as? ExploreFragment)?.compressExplore()
                 }
             }
         }
@@ -368,7 +369,11 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
     }
 
     private fun getFragmentId(position: Int): Int {
-        return realPositions[position]
+        val id = realPositions[position]
+        if (id == idBookshelf) {
+            return idBookshelf1
+        }
+        return id
     }
 
     private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {
@@ -395,7 +400,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
         override fun containsItem(itemId: Long): Boolean {
             val id = itemId.toInt()
             for (i in 0 until bottomMenuCount) {
-                if (realPositions[i] == id) return true
+                if (getFragmentId(i) == id) return true
             }
             return false
         }
