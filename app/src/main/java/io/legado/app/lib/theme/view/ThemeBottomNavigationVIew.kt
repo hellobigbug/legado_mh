@@ -31,6 +31,10 @@ class ThemeBottomNavigationVIew(context: Context, attrs: AttributeSet) :
         itemIconTintList = colorStateList
         itemTextColor = colorStateList
 
+        // 强制纯图标模式，隐藏 ActiveIndicator，避免与图标/文字叠加
+        labelVisibilityMode = LABEL_VISIBILITY_UNLABELED
+        itemActiveIndicatorStyle = null
+
         if (AppConfig.isEInkMode) {
             isItemHorizontalTranslationEnabled = false
             itemBackground = ColorDrawable(Color.TRANSPARENT)

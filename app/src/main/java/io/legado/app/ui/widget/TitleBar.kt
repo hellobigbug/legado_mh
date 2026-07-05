@@ -182,12 +182,8 @@ class TitleBar @JvmOverloads constructor(
             if (AppConfig.isEInkMode) {
                 setBackgroundResource(R.drawable.bg_eink_border_bottom)
             } else {
-                val bgColor = context.primaryColor
-                setBackgroundColor(bgColor)
-                // 根据背景亮度自动设置标题/图标颜色，保证对比度
-                val textColor = if (ColorUtils.isColorLight(bgColor)) Color.BLACK else Color.WHITE
-                setTextColor(textColor)
-                setColorFilter(textColor)
+                setBackgroundColor(context.primaryColor)
+                updateTitleBarTint()
             }
 
             stateListAnimator = null
@@ -199,6 +195,19 @@ class TitleBar @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         attachToActivity()
+        // attachToActivity 设置 SupportActionBar 后可能覆盖标题/图标颜色，重新应用一次
+        updateTitleBarTint()
+    }
+
+    private fun updateTitleBarTint() {
+        if (isInEditMode) return
+        val bgDrawable = background
+        val bgColor = if (bgDrawable is ColorDrawable) bgDrawable.color else context.primaryColor
+        if (!AppConfig.isEInkMode && bgColor != Color.TRANSPARENT) {
+            val textColor = if (ColorUtils.isColorLight(bgColor)) Color.BLACK else Color.WHITE
+            setTextColor(textColor)
+            setColorFilter(textColor)
+        }
     }
 
     fun setNavigationOnClickListener(clickListener: ((View) -> Unit)) {
