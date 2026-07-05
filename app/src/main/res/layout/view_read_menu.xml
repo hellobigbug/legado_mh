@@ -134,11 +134,12 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
+            <!-- 快捷组：搜索内容 + 夜间切换 -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="12dp"
                 android:contentDescription="@string/search_content"
                 android:src="@drawable/ic_search"
                 android:tint="@color/primaryText"
@@ -149,16 +150,32 @@
                 app:pressedTranslationZ="2dp"
                 tools:ignore="UnusedAttribute" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabNightTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:contentDescription="@string/dark_theme"
+                android:src="@drawable/ic_brightness"
+                android:tint="@color/primaryText"
+                android:tooltipText="@string/dark_theme"
+                app:backgroundTint="@color/background_menu"
+                app:elevation="2dp"
+                app:fabSize="mini"
+                app:pressedTranslationZ="2dp"
+                tools:ignore="UnusedAttribute" />
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
+            <!-- 功能组：自动翻页 + 替换规则 -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabAutoPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="12dp"
                 android:contentDescription="@string/auto_next_page"
                 android:src="@drawable/ic_auto_page"
                 android:tint="@color/primaryText"
@@ -169,40 +186,15 @@
                 app:pressedTranslationZ="2dp"
                 tools:ignore="UnusedAttribute" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabReplaceRule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="12dp"
                 android:contentDescription="@string/replace_rule_title"
                 android:src="@drawable/ic_find_replace"
                 android:tint="@color/primaryText"
                 android:tooltipText="@string/replace_rule_title"
-                app:backgroundTint="@color/background_menu"
-                app:elevation="2dp"
-                app:fabSize="mini"
-                app:pressedTranslationZ="2dp"
-                tools:ignore="UnusedAttribute" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabNightTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:contentDescription="@string/dark_theme"
-                android:src="@drawable/ic_brightness"
-                android:tint="@color/primaryText"
-                android:tooltipText="@string/dark_theme"
                 app:backgroundTint="@color/background_menu"
                 app:elevation="2dp"
                 app:fabSize="mini"

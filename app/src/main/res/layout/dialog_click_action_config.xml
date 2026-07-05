@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/translucent"
-    android:padding="3dp"
+    android:padding="4dp"
     android:orientation="vertical"
     tools:ignore="NestedWeights">
 
@@ -16,7 +16,7 @@
         android:background="@drawable/shape_translucent_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_margin="3dp"
+        android:layout_margin="4dp"
         android:paddingLeft="16dp"
         android:paddingTop="6dp"
         android:paddingRight="16dp"
@@ -50,33 +50,36 @@
             android:id="@+id/tv_top_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:text="上一页" />
 
         <TextView
             android:id="@+id/tv_top_center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:text="上一页" />
 
         <TextView
             android:id="@+id/tv_top_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:text="下一页" />
 
     </LinearLayout>
@@ -91,33 +94,36 @@
             android:id="@+id/tv_middle_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:text="上一页" />
 
         <TextView
             android:id="@+id/tv_middle_center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:text="@string/menu"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/tv_middle_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:text="下一页" />
 
     </LinearLayout>
@@ -132,11 +138,12 @@
             android:id="@+id/tv_bottom_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:ignore="NestedWeights"
             tools:text="上一页" />
 
@@ -144,22 +151,24 @@
             android:id="@+id/tv_bottom_center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:text="下一页" />
 
         <TextView
             android:id="@+id/tv_bottom_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_translucent_card"
+            android:background="@drawable/bg_click_region"
             android:gravity="center"
             android:textColor="@color/white"
+            android:textSize="13sp"
             tools:text="下一页" />
 
     </LinearLayout>
