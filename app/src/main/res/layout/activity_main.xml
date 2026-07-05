@@ -20,7 +20,7 @@
         android:background="@color/background"
         android:minHeight="56dp"
         app:itemActiveIndicatorStyle="@style/Widget.Legado.BottomNavigationView.ActiveIndicator"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/main_bnv" />
 
 </LinearLayout>
