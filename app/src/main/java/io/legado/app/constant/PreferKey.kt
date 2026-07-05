@@ -5,6 +5,7 @@ object PreferKey {
     const val language = "language"
     const val fontScale = "fontScale"
     const val themeMode = "themeMode"
+    const val styleMode = "styleMode"  // 界面风格：m3 / flat / blur，默认 m3
     const val userAgent = "userAgent"
     const val showUnread = "showUnread"
     const val bookGroupStyle = "bookGroupStyle"

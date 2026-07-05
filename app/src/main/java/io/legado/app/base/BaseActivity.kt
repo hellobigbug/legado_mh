@@ -139,24 +139,40 @@ abstract class BaseActivity<VB : ViewBinding>(
         when (theme) {
             Theme.Transparent -> setTheme(R.style.AppTheme_Transparent)
             Theme.Dark -> {
-                setTheme(R.style.AppTheme_Dark)
+                applyStyleTheme(isNight = true)
                 window.decorView.applyBackgroundTint(backgroundColor)
             }
 
             Theme.Light -> {
-                setTheme(R.style.AppTheme_Light)
+                applyStyleTheme(isNight = false)
                 window.decorView.applyBackgroundTint(backgroundColor)
             }
 
             else -> {
-                if (ColorUtils.isColorLight(primaryColor)) {
-                    setTheme(R.style.AppTheme_Light)
-                } else {
-                    setTheme(R.style.AppTheme_Dark)
-                }
+                applyStyleTheme(isNight = !ColorUtils.isColorLight(primaryColor))
                 window.decorView.applyBackgroundTint(backgroundColor)
             }
         }
+    }
+
+    /**
+     * 根据 AppConfig.styleMode 选择对应风格的主题。
+     * - "m3"   → AppTheme.M3（Material 3 大圆角）
+     * - "flat" → AppTheme.Flat（极简扁平直角）
+     * - "blur" → AppTheme.Blur（毛玻璃叠层半透明）
+     * 默认走原 AppTheme.Light/Dark（按 primaryColor 亮度判断）
+     * 风格主题继承 AppTheme.Light，夜间模式靠 DayNight 限定符自动切换颜色
+     * 毛玻璃风格关闭 DynamicColors 避免壁纸取色与半透明色冲突
+     */
+    private fun applyStyleTheme(isNight: Boolean) {
+        val styleRes = when (AppConfig.styleMode) {
+            "flat" -> R.style.AppTheme_Flat
+            "blur" -> R.style.AppTheme_Blur
+            "m3" -> R.style.AppTheme_M3
+            else -> if (isNight) R.style.AppTheme_Dark else R.style.AppTheme_Light
+        }
+        setTheme(styleRes)
+        // 动态取色由 App.kt 全局注册的 DynamicColors Precondition 统一处理（毛玻璃风格下跳过）
     }
 
     open fun upBackgroundImage() {

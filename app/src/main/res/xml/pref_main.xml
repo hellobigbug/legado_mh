@@ -35,6 +35,16 @@
         android:title="@string/theme_mode"
         app:iconSpaceReserved="false" />
 
+    <io.legado.app.lib.prefs.NameListPreference
+        android:defaultValue="m3"
+        android:entries="@array/style_mode"
+        android:entryValues="@array/style_mode_value"
+        android:icon="@drawable/ic_cfg_theme"
+        android:key="styleMode"
+        android:summary="@string/style_mode_desc"
+        android:title="@string/style_mode"
+        app:iconSpaceReserved="false" />
+
     <io.legado.app.lib.prefs.SwitchPreference
         android:defaultValue="false"
         android:icon="@drawable/ic_cfg_web"

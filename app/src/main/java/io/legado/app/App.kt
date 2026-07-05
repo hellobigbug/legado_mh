@@ -72,7 +72,13 @@ class App : Application() {
             .setLogger(EventLogger())
         applyDayNight(this)
         // Material 3 动态取色（Android 12+，低版本回退到 md_theme_* 色板）
-        DynamicColors.applyToActivitiesIfAvailable(this)
+        // 毛玻璃叠层风格下关闭，避免系统壁纸色覆盖半透明色板
+        DynamicColors.applyToActivitiesIfAvailable(
+            this,
+            com.google.android.material.color.DynamicColorsOptions.Builder()
+                .setPrecondition { _, _ -> AppConfig.styleMode != "blur" }
+                .build()
+        )
         registerActivityLifecycleCallbacks(LifecycleHelp)
         defaultSharedPreferences.registerOnSharedPreferenceChangeListener(AppConfig)
         DefaultData.upVersion()

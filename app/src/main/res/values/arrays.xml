@@ -54,6 +54,17 @@
 		<item>E-Ink mode</item>
 	</string-array>
 
+	<string-array name="style_mode">
+		<item>@string/style_m3</item>
+		<item>@string/style_flat</item>
+		<item>@string/style_blur</item>
+	</string-array>
+	<string-array name="style_mode_value">
+		<item>m3</item>
+		<item>flat</item>
+		<item>blur</item>
+	</string-array>
+
 	<string-array name="NavBarColors">
 		<item>Auto</item>
 		<item>Black</item>

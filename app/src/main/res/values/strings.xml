@@ -476,6 +476,11 @@
     <string name="theme">Theme</string>
     <string name="theme_mode">Theme mode</string>
     <string name="theme_mode_desc">Select a theme you want</string>
+    <string name="style_mode">UI style</string>
+    <string name="style_mode_desc">Material 3 rounded / Flat / Blur overlay</string>
+    <string name="style_m3">Material 3 (rounded)</string>
+    <string name="style_flat">Flat (square)</string>
+    <string name="style_blur">Blur overlay (translucent)</string>
     <string name="join_qq_group">Join QQ group</string>
     <string name="bg_image_per">Set the background image requires storage permission</string>
     <string name="input_book_source_url">Input book source address</string>

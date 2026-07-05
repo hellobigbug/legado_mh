@@ -35,18 +35,85 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
-    <!-- Material 3 形状系统：圆角定义（供 MaterialCardView 等控件直接引用） -->
-    <style name="ShapeAppearanceApp" parent="android:Widget">
-        <item name="cornerFamily">rounded</item>
-    </style>
-    <style name="ShapeAppearanceApp.SmallComponent" parent="ShapeAppearanceApp">
+    <!-- Material 3 形状系统：3 套风格差异化圆角定义 -->
+    <!-- M3 大圆角：8/16/28dp -->
+    <style name="ShapeAppearance.M3.Small" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerSize">8dp</item>
     </style>
-    <style name="ShapeAppearanceApp.MediumComponent" parent="ShapeAppearanceApp">
+    <style name="ShapeAppearance.M3.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="ShapeAppearance.M3.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">28dp</item>
+    </style>
+
+    <!-- 极简扁平：0dp 直角 -->
+    <style name="ShapeAppearance.Flat.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">0dp</item>
+    </style>
+    <style name="ShapeAppearance.Flat.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">0dp</item>
+    </style>
+    <style name="ShapeAppearance.Flat.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <!-- 毛玻璃叠层：12/20/28dp 中等圆角 -->
+    <style name="ShapeAppearance.Blur.Small" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerSize">12dp</item>
     </style>
-    <style name="ShapeAppearanceApp.LargeComponent" parent="ShapeAppearanceApp">
-        <item name="cornerSize">16dp</item>
+    <style name="ShapeAppearance.Blur.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">20dp</item>
+    </style>
+    <style name="ShapeAppearance.Blur.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">28dp</item>
+    </style>
+
+    <!-- 3 套风格派生主题：在 AppTheme.Light 基础上叠加 M3 主题属性 -->
+    <!-- M3 大圆角风格 -->
+    <style name="AppTheme.M3" parent="AppTheme.Light">
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.M3.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.M3.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.M3.Large</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+    </style>
+
+    <!-- 极简扁平风格 -->
+    <style name="AppTheme.Flat" parent="AppTheme.Light">
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Flat.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Flat.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Flat.Large</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorPrimaryContainer">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorSecondaryContainer">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+    </style>
+
+    <!-- 毛玻璃叠层风格 -->
+    <style name="AppTheme.Blur" parent="AppTheme.Light">
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Blur.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Blur.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Blur.Large</item>
+        <item name="colorSurface">@color/md_theme_surface_variant_translucent</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer_translucent</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer_translucent</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+        <item name="android:windowBackground">@color/md_theme_background_translucent</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay.Light" parent="ThemeOverlay.AppCompat.Light">

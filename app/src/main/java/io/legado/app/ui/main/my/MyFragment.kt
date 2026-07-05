@@ -23,6 +23,7 @@ import io.legado.app.ui.about.ReadRecordActivity
 import io.legado.app.ui.book.bookmark.AllBookmarkActivity
 import io.legado.app.ui.book.source.manage.BookSourceActivity
 import io.legado.app.ui.book.toc.rule.TxtTocRuleActivity
+import io.legado.app.utils.postEvent
 import io.legado.app.ui.config.ConfigActivity
 import io.legado.app.ui.config.ConfigTag
 import io.legado.app.ui.main.MainFragmentInterface
@@ -103,6 +104,12 @@ class MyFragment() : BaseFragment(R.layout.fragment_my_config), MainFragmentInte
             findPreference<NameListPreference>(PreferKey.themeMode)?.let {
                 it.setOnPreferenceChangeListener { _, _ ->
                     view?.post { ThemeConfig.applyDayNight(requireContext()) }
+                    true
+                }
+            }
+            findPreference<NameListPreference>(PreferKey.styleMode)?.let {
+                it.setOnPreferenceChangeListener { _, _ ->
+                    view?.post { postEvent(EventBus.RECREATE, "") }
                     true
                 }
             }

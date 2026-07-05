@@ -475,6 +475,11 @@
     <string name="theme">主题</string>
     <string name="theme_mode">主题模式</string>
     <string name="theme_mode_desc">选择主题模式</string>
+    <string name="style_mode">界面风格</string>
+    <string name="style_mode_desc">Material 3 大圆角 / 极简扁平 / 毛玻璃叠层</string>
+    <string name="style_m3">Material 3 大圆角</string>
+    <string name="style_flat">极简扁平</string>
+    <string name="style_blur">毛玻璃叠层</string>
     <string name="join_qq_group">加入 QQ 群</string>
     <string name="bg_image_per">获取背景图片需存储权限</string>
     <string name="input_book_source_url">输入书源网址</string>

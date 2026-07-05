@@ -52,6 +52,12 @@
     <color name="md_theme_scrim">#000000</color>
     <color name="md_theme_shadow">#000000</color>
 
+    <!-- 毛玻璃叠层风格专用：半透明色板（亮色） -->
+    <color name="md_theme_background_translucent">#E6F4FBFA</color>
+    <color name="md_theme_surface_variant_translucent">#CCDAE5E3</color>
+    <color name="md_theme_primaryContainer_translucent">#CC6FF6FE</color>
+    <color name="md_theme_secondaryContainer_translucent">#CCCDE8EA</color>
+
     <color name="transparent">#00000000</color>
 
     <color name="transparent10">#10000000</color>
