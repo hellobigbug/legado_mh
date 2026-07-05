@@ -11,27 +11,15 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/menu_add_book"
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_book"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/menu_update_toc"
         android:icon="@drawable/ic_refresh_black_24dp"
         android:title="@string/update_toc"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/menu_add_local"
-        android:icon="@drawable/ic_add"
-        android:title="@string/book_local"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/menu_remote"
-        android:icon="@drawable/ic_add"
-        android:title="@string/add_remote_book"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/menu_add_url"
-        android:icon="@drawable/ic_add_online"
-        android:title="@string/add_url"
         app:showAsAction="never" />
 
     <item

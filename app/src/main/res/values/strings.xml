@@ -197,6 +197,7 @@
     <string name="share_app">Share to</string>
     <string name="flow_sys">Follow system</string>
     <string name="add">Add</string>
+    <string name="add_book">Add book</string>
     <string name="import_book_source">Import book sources</string>
     <string name="import_local">Import local</string>
     <string name="import_on_line">Import online</string>
