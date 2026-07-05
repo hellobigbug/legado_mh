@@ -69,6 +69,10 @@
     <string name="theme_setting_s">Some settings related to interface or color</string>
     <string name="other_setting">Other settings</string>
     <string name="other_setting_s">Some function-related settings</string>
+    <string name="read_category_screen">Screen display</string>
+    <string name="read_category_layout">Layout</string>
+    <string name="read_category_page_interaction">Paging interaction</string>
+    <string name="read_category_content">Content features</string>
     <string name="about">About</string>
     <string name="donate">Donations</string>
     <string name="exit">Exit</string>

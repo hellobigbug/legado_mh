@@ -68,6 +68,10 @@
     <string name="theme_setting_s">與介面/顏色相關的一些設定</string>
     <string name="other_setting">其它設定</string>
     <string name="other_setting_s">與功能相關的一些設定</string>
+    <string name="read_category_screen">螢幕顯示</string>
+    <string name="read_category_layout">排版</string>
+    <string name="read_category_page_interaction">翻頁互動</string>
+    <string name="read_category_content">內容功能</string>
     <string name="about">關於</string>
     <string name="donate">捐贈</string>
     <string name="exit">退出</string>
