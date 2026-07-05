@@ -16,7 +16,6 @@ import com.jeremyliao.liveeventbus.logger.DefaultLogger
 import com.script.rhino.RhinoScriptEngine
 import io.legado.app.base.AppContextWrapper
 import io.legado.app.constant.AppConst.channelIdDownload
-import io.legado.app.constant.AppConst.channelIdReadAloud
 import io.legado.app.constant.AppConst.channelIdWeb
 import io.legado.app.constant.PreferKey
 import io.legado.app.data.appDb
@@ -170,17 +169,6 @@ class App : Application() {
             lockscreenVisibility = Notification.VISIBILITY_PUBLIC
         }
 
-        val readAloudChannel = NotificationChannel(
-            channelIdReadAloud,
-            getString(R.string.read_aloud),
-            NotificationManager.IMPORTANCE_DEFAULT
-        ).apply {
-            enableLights(false)
-            enableVibration(false)
-            setSound(null, null)
-            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-        }
-
         val webChannel = NotificationChannel(
             channelIdWeb,
             getString(R.string.web_service),
@@ -196,7 +184,6 @@ class App : Application() {
         notificationManager.createNotificationChannels(
             listOf(
                 downloadChannel,
-                readAloudChannel,
                 webChannel
             )
         )
