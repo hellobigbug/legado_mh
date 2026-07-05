@@ -33,6 +33,20 @@
         <item name="android:popupMenuStyle">@style/Style.PopupMenu</item>
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- M3 主题属性默认值（让所有主题都能解析 ?attr/colorSurface 等） -->
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_outline</item>
+        <!-- 默认 M3 圆角（派生主题可覆盖） -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.M3.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.M3.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.M3.Large</item>
     </style>
 
     <!-- Material 3 形状系统：3 套风格差异化圆角定义 -->
