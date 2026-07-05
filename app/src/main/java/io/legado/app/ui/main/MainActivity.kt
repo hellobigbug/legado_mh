@@ -140,9 +140,6 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
                     viewModel.upAllBookToc()
                 }
             }
-            binding.viewPagerMain.postDelayed(3000) {
-                viewModel.postLoad()
-            }
         }
     }
 
