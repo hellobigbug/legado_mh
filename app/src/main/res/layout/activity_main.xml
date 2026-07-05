@@ -18,9 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
-        android:minHeight="50dp"
-        app:itemActiveIndicatorStyle="@color/transparent"
-        app:labelVisibilityMode="unlabeled"
+        android:minHeight="56dp"
+        app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/main_bnv" />
 
 </LinearLayout>
