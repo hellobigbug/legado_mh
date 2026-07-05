@@ -37,7 +37,6 @@ import io.legado.app.lib.theme.primaryColor
 import io.legado.app.ui.about.CrashLogsDialog
 import io.legado.app.ui.main.bookshelf.BaseBookshelfFragment
 import io.legado.app.ui.main.bookshelf.style1.BookshelfFragment1
-import io.legado.app.ui.main.bookshelf.style2.BookshelfFragment2
 import io.legado.app.ui.main.explore.ExploreFragment
 import io.legado.app.ui.main.my.MyFragment
 import io.legado.app.ui.widget.dialog.TextDialog
@@ -66,9 +65,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
 
     override val binding by viewBinding(ActivityMainBinding::inflate)
     override val viewModel by viewModels<MainViewModel>()
-    private val idBookshelf = 0
     private val idBookshelf1 = 11
-    private val idBookshelf2 = 12
     private val idExplore = 1
     private val idMy = 3
     private var exitTime: Long = 0
@@ -77,7 +74,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
     private var pagePosition = 0
     private val fragmentMap = hashMapOf<Int, Fragment>()
     private var bottomMenuCount = 4
-    private val realPositions = arrayOf(idBookshelf, idExplore, idMy)
+    private val realPositions = arrayOf(idBookshelf1, idExplore, idMy)
     private val adapter by lazy {
         TabFragmentPageAdapter(supportFragmentManager)
     }
@@ -94,11 +91,6 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
             if (pagePosition != 0) {
                 binding.viewPagerMain.currentItem = 0
                 return@addCallback
-            }
-            (fragmentMap[getFragmentId(0)] as? BookshelfFragment2)?.let {
-                if (it.back()) {
-                    return@addCallback
-                }
             }
             if (System.currentTimeMillis() - exitTime > 2000) {
                 toastOnUi(R.string.double_click_exit)
@@ -382,11 +374,7 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
     }
 
     private fun getFragmentId(position: Int): Int {
-        val id = realPositions[position]
-        if (id == idBookshelf) {
-            return if (AppConfig.bookGroupStyle == 1) idBookshelf2 else idBookshelf1
-        }
-        return id
+        return realPositions[position]
     }
 
     private inner class PageChangeCallback : ViewPager.SimpleOnPageChangeListener() {
@@ -412,7 +400,6 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
                 ?: return POSITION_NONE
             val fragmentId = getId(position)
             if ((fragmentId == idBookshelf1 && any is BookshelfFragment1)
-                || (fragmentId == idBookshelf2 && any is BookshelfFragment2)
                 || (fragmentId == idExplore && any is ExploreFragment)
                 || (fragmentId == idMy && any is MyFragment)
             ) {
@@ -424,7 +411,6 @@ class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
         override fun getItem(position: Int): Fragment {
             return when (getId(position)) {
                 idBookshelf1 -> BookshelfFragment1(position)
-                idBookshelf2 -> BookshelfFragment2(position)
                 idExplore -> ExploreFragment(position)
                 else -> MyFragment(position)
             }
