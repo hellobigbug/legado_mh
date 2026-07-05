@@ -72,6 +72,10 @@
     <string name="read_category_layout">排版</string>
     <string name="read_category_page_interaction">翻頁互動</string>
     <string name="read_category_content">內容功能</string>
+    <!-- 我的頁面 3 大分類 -->
+    <string name="my_category_data">資料管理</string>
+    <string name="my_category_appearance">外觀與個人化</string>
+    <string name="my_category_other">其他</string>
     <string name="about">關於</string>
     <string name="donate">捐贈</string>
     <string name="exit">退出</string>
