@@ -26,7 +26,6 @@ import io.legado.app.databinding.ActivityCacheBookBinding
 import io.legado.app.databinding.DialogEditTextBinding
 import io.legado.app.databinding.DialogSelectSectionExportBinding
 import io.legado.app.help.book.getExportFileName
-import io.legado.app.help.book.isAudio
 import io.legado.app.help.book.tryParesExportFileName
 import io.legado.app.help.config.AppConfig
 import io.legado.app.lib.dialogs.SelectItem
@@ -239,9 +238,7 @@ class CacheActivity : VMBaseActivity<ActivityCacheBookBinding, CacheViewModel>()
         booksFlowJob?.cancel()
         booksFlowJob = lifecycleScope.launch {
             appDb.bookDao.flowByGroup(groupId).map { books ->
-                val booksDownload = books.filter {
-                    !it.isAudio
-                }
+                val booksDownload = books
                 when (AppConfig.getBookSortByGroupId(groupId)) {
                     1 -> booksDownload.sortedByDescending { it.latestChapterTime }
                     2 -> booksDownload.sortedWith { o1, o2 ->

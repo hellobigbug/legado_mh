@@ -14,7 +14,6 @@ import io.legado.app.help.http.addHeaders
 import io.legado.app.help.http.okHttpClient
 import io.legado.app.help.http.okHttpClientManga
 import io.legado.app.help.source.SourceHelp
-import io.legado.app.model.ReadManga
 import io.legado.app.utils.ImageUtils
 import io.legado.app.utils.isWifiConnect
 import com.script.rhino.runScriptWithContext
@@ -119,7 +118,7 @@ class OkHttpStreamFetcher(
                         responseBody!!.bytes(),
                         isCover = false,
                         source,
-                        ReadManga.book
+                        null
                     )?.inputStream()
                 } else {
                     ImageUtils.decode(

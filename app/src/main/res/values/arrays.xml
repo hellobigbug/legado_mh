@@ -141,7 +141,6 @@
 
 	<string-array name="rule_type">
 		<item>BookSource</item>
-		<item>RssSource</item>
 		<item>ReplaceRule</item>
 	</string-array>
 

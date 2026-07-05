@@ -15,7 +15,6 @@ import io.legado.app.data.entities.Book
 import io.legado.app.databinding.ActivityBookInfoEditBinding
 import io.legado.app.help.book.BookHelp
 import io.legado.app.help.book.addType
-import io.legado.app.help.book.isAudio
 import io.legado.app.help.book.isImage
 import io.legado.app.help.book.isLocal
 import io.legado.app.help.book.removeType
@@ -102,7 +101,6 @@ class BookInfoEditActivity :
         spType.setSelection(
             when {
                 book.isImage -> 2
-                book.isAudio -> 1
                 else -> 0
             }
         )

@@ -33,9 +33,6 @@ import kotlin.math.max
 import kotlin.math.min
 
 
-val Book.isAudio: Boolean
-    get() = isType(BookType.audio)
-
 val Book.isImage: Boolean
     get() = isType(BookType.image)
 

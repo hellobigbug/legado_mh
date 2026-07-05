@@ -29,10 +29,8 @@ import io.legado.app.help.book.removeType
 import io.legado.app.help.book.updateTo
 import io.legado.app.help.coroutine.Coroutine
 import io.legado.app.lib.webdav.ObjectNotFoundException
-import io.legado.app.model.AudioPlay
 import io.legado.app.model.BookCover
 import io.legado.app.model.ReadBook
-import io.legado.app.model.ReadManga
 import io.legado.app.model.analyzeRule.AnalyzeUrl
 import io.legado.app.model.localBook.LocalBook
 import io.legado.app.model.webBook.WebBook
@@ -400,8 +398,6 @@ class BookInfoViewModel(application: Application) : BaseViewModel(application) {
             book.save()
             if (ReadBook.book?.isSameNameAuthor(book) == true) {
                 ReadBook.book = book
-            } else if (AudioPlay.book?.isSameNameAuthor(book) == true) {
-                AudioPlay.book = book
             }
         }.onSuccess {
             success?.invoke()
@@ -432,8 +428,6 @@ class BookInfoViewModel(application: Application) : BaseViewModel(application) {
                 }
                 if (ReadBook.book?.isSameNameAuthor(book) == true) {
                     ReadBook.book = book
-                } else if (AudioPlay.book?.isSameNameAuthor(book) == true) {
-                    AudioPlay.book = book
                 }
                 book.save()
             }
@@ -473,9 +467,6 @@ class BookInfoViewModel(application: Application) : BaseViewModel(application) {
             BookHelp.clearCache(bookData.value!!)
             if (ReadBook.book?.bookUrl == bookData.value!!.bookUrl) {
                 ReadBook.clearTextChapter()
-            }
-            if (ReadManga.book?.bookUrl == bookData.value!!.bookUrl) {
-                ReadManga.clearMangaChapter()
             }
         }.onSuccess {
             context.toastOnUi(R.string.clear_cache_success)

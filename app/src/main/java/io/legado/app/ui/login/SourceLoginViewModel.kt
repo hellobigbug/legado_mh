@@ -20,8 +20,6 @@ class SourceLoginViewModel(application: Application) : BaseViewModel(application
                 ?: throw NoStackTraceException("没有参数")
             when (intent.getStringExtra("type")) {
                 "bookSource" -> source = appDb.bookSourceDao.getBookSource(sourceKey)
-                "rssSource" -> source = appDb.rssSourceDao.getByKey(sourceKey)
-                "httpTts" -> source = appDb.httpTTSDao.get(sourceKey.toLong())
             }
             headerMap = runScriptWithContext {
                 source?.getHeaderMap(true) ?: emptyMap()

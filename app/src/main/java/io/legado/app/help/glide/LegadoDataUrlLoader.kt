@@ -9,7 +9,6 @@ import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.bumptech.glide.signature.ObjectKey
 import io.legado.app.exception.NoStackTraceException
-import io.legado.app.model.ReadManga
 import io.legado.app.model.analyzeRule.AnalyzeUrl
 import io.legado.app.utils.ImageUtils
 import com.script.rhino.runScriptWithContext
@@ -44,12 +43,12 @@ class LegadoDataUrlLoader : ModelLoader<String, InputStream> {
         ) {
             try {
                 val bytes = AnalyzeUrl(
-                    model, source = ReadManga.bookSource,
+                    model, source = null,
                     coroutineContext = coroutineContext
                 ).getByteArray()
                 val decoded = runScriptWithContext(coroutineContext) {
                     ImageUtils.decode(
-                        model, bytes, isCover = false, ReadManga.bookSource, ReadManga.book
+                        model, bytes, isCover = false, null, null
                     )?.inputStream()
                 }
                 if (decoded == null) {
