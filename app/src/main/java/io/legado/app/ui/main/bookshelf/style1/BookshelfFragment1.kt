@@ -2,6 +2,7 @@
 
 package io.legado.app.ui.main.bookshelf.style1
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import io.legado.app.ui.book.group.GroupEditDialog
 import io.legado.app.ui.book.search.SearchActivity
 import io.legado.app.ui.main.bookshelf.BaseBookshelfFragment
 import io.legado.app.ui.main.bookshelf.style1.books.BooksFragment
+import io.legado.app.utils.ColorUtils
 import io.legado.app.utils.isCreated
 import io.legado.app.utils.setEdgeEffectColor
 import io.legado.app.utils.showDialogFragment
@@ -70,7 +72,10 @@ class BookshelfFragment1() : BaseBookshelfFragment(R.layout.fragment_bookshelf1)
         binding.viewPagerBookshelf.setEdgeEffectColor(primaryColor)
         tabLayout.isTabIndicatorFullWidth = false
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
-        tabLayout.setSelectedTabIndicatorColor(requireContext().accentColor)
+        // 根据标题栏背景亮度选择高对比度的 indicator 颜色
+        val indicatorColor = if (ColorUtils.isColorLight(requireContext().primaryColor))
+            Color.BLACK else Color.WHITE
+        tabLayout.setSelectedTabIndicatorColor(indicatorColor)
         tabLayout.setupWithViewPager(binding.viewPagerBookshelf)
         binding.viewPagerBookshelf.offscreenPageLimit = 1
         binding.viewPagerBookshelf.adapter = adapter

@@ -2,6 +2,7 @@ package io.legado.app.ui.widget
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.ColorDrawable
@@ -22,6 +23,7 @@ import io.legado.app.R
 import io.legado.app.help.config.AppConfig
 import io.legado.app.lib.theme.elevation
 import io.legado.app.lib.theme.primaryColor
+import io.legado.app.utils.ColorUtils
 import io.legado.app.utils.activity
 import splitties.views.bottomPadding
 import splitties.views.topPadding
@@ -180,7 +182,12 @@ class TitleBar @JvmOverloads constructor(
             if (AppConfig.isEInkMode) {
                 setBackgroundResource(R.drawable.bg_eink_border_bottom)
             } else {
-                setBackgroundColor(context.primaryColor)
+                val bgColor = context.primaryColor
+                setBackgroundColor(bgColor)
+                // 根据背景亮度自动设置标题/图标颜色，保证对比度
+                val textColor = if (ColorUtils.isColorLight(bgColor)) Color.BLACK else Color.WHITE
+                setTextColor(textColor)
+                setColorFilter(textColor)
             }
 
             stateListAnimator = null

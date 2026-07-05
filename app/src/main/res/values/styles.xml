@@ -143,10 +143,11 @@
         <item name="colorAccent">@color/md_grey_900</item>
     </style>
 
-    <!-- 底部导航 ActiveIndicator 定制：响应主题风格（colorPrimaryContainer + 圆角） -->
+    <!-- 底部导航 ActiveIndicator 定制：仅覆盖图标区域，避免与文字重叠 -->
     <style name="Widget.Legado.BottomNavigationView.ActiveIndicator"
         parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">?attr/colorPrimaryContainer</item>
+        <item name="android:width">36dp</item>
+        <item name="android:height">32dp</item>
         <item name="shapeAppearance">?attr/shapeAppearanceSmallComponent</item>
     </style>
 

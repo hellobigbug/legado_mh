@@ -1,6 +1,7 @@
 package io.legado.app.lib.theme.view
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
@@ -35,6 +36,11 @@ class ThemeBottomNavigationVIew(context: Context, attrs: AttributeSet) :
             isItemHorizontalTranslationEnabled = false
             itemBackground = ColorDrawable(Color.TRANSPARENT)
         }
+
+        // ActiveIndicator 颜色跟随底部背景亮度，低对比度避免与图标/文字重叠
+        val indicatorColor = if (ColorUtils.isColorLight(bgColor))
+            0x1F000000 else 0x1FFFFFFF
+        itemActiveIndicatorColor = ColorStateList.valueOf(indicatorColor)
 
         ViewCompat.setOnApplyWindowInsetsListener(this, null)
     }
