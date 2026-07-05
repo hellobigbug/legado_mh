@@ -31,6 +31,9 @@ class ThemeBottomNavigationVIew(context: Context, attrs: AttributeSet) :
         itemIconTintList = colorStateList
         itemTextColor = colorStateList
 
+        // Ensure labels are hidden as per unlabeled mode
+        labelVisibilityMode = com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
+
         if (AppConfig.isEInkMode) {
             isItemHorizontalTranslationEnabled = false
             itemBackground = ColorDrawable(Color.TRANSPARENT)
