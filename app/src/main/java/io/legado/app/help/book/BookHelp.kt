@@ -19,7 +19,6 @@ import io.legado.app.utils.ImageUtils
 import io.legado.app.utils.MD5Utils
 import io.legado.app.utils.NetworkUtils
 import io.legado.app.utils.StringUtils
-import io.legado.app.utils.SvgUtils
 import io.legado.app.utils.UrlUtil
 import io.legado.app.utils.createFileIfNotExist
 import io.legado.app.utils.exists
@@ -39,7 +38,6 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.withContext
 import org.apache.commons.text.similarity.JaccardSimilarity
 import splitties.init.appCtx
-import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -372,9 +370,6 @@ object BookHelp {
                 }
                 BitmapFactory.decodeFile(image.absolutePath, op)
                 if (op.outWidth < 1 && op.outHeight < 1) {
-                    if (SvgUtils.getSize(image.absolutePath) != null) {
-                        continue
-                    }
                     ret = false
                     image.delete()
                 }
@@ -388,7 +383,7 @@ object BookHelp {
         op.inJustDecodeBounds = true
         BitmapFactory.decodeByteArray(bytes, 0, bytes.size, op)
         if (op.outWidth < 1 && op.outHeight < 1) {
-            return SvgUtils.getSize(ByteArrayInputStream(bytes)) != null
+            return false
         }
         return true
     }

@@ -19,7 +19,6 @@ import io.legado.app.model.localBook.MobiFile
 import io.legado.app.model.localBook.PdfFile
 import io.legado.app.utils.BitmapUtils
 import io.legado.app.utils.FileUtils
-import io.legado.app.utils.SvgUtils
 import io.legado.app.utils.toastOnUi
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
@@ -163,9 +162,6 @@ object ImageProvider {
         op.inJustDecodeBounds = true
         BitmapFactory.decodeFile(file.absolutePath, op)
         if (op.outWidth < 1 && op.outHeight < 1) {
-            //svg size
-            val size = SvgUtils.getSize(file.absolutePath)
-            if (size != null) return size
             putDebug("ImageProvider: $src Unsupported image type")
             //file.delete() 重复下载
             return Size(errorBitmap.width, errorBitmap.height)
@@ -195,7 +191,6 @@ object ImageProvider {
         if (cacheBitmap != null) return cacheBitmap
         return kotlin.runCatching {
             val bitmap = BitmapUtils.decodeBitmap(vFile.absolutePath, width, height)
-                ?: SvgUtils.createBitmap(vFile.absolutePath, width, height)
                 ?: throw NoStackTraceException(appCtx.getString(R.string.error_decode_bitmap))
             put(vFile.absolutePath, bitmap)
             bitmap

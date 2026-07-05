@@ -7,7 +7,6 @@ import io.legado.app.constant.AppPattern
 import io.legado.app.data.entities.*
 import io.legado.app.help.book.isWebFile
 import io.legado.app.help.coroutine.CompositeCoroutine
-import io.legado.app.help.source.sortUrls
 import io.legado.app.model.webBook.WebBook
 import io.legado.app.utils.HtmlFormatter
 import io.legado.app.utils.isAbsUrl

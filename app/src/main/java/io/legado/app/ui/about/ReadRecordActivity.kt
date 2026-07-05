@@ -1,6 +1,7 @@
 package io.legado.app.ui.about
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -191,9 +192,7 @@ class ReadRecordActivity : BaseActivity<ActivityReadRecordBinding>() {
                         if (book == null) {
                             SearchActivity.start(this@ReadRecordActivity, item.bookName)
                         } else {
-                            startActivity<ReadBookActivity> {
-                                putExtra("bookUrl", book.bookUrl)
-                            }
+                            startActivity(Intent(this@ReadRecordActivity, ReadBookActivity::class.java).putExtra("bookUrl", book.bookUrl))
                         }
                     }
                 }

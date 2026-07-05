@@ -1,5 +1,6 @@
 package io.legado.app.ui.book.import
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.widget.SearchView
@@ -97,9 +98,7 @@ abstract class BaseImportBookActivity<VM : ViewModel> : VMBaseActivity<ActivityI
     abstract fun onSearchTextChange(newText: String?)
 
     protected fun startReadBook(book: Book) {
-        startActivity<ReadBookActivity> {
-            putExtra("bookUrl", book.bookUrl)
-        }
+        startActivity(Intent(this, ReadBookActivity::class.java).putExtra("bookUrl", book.bookUrl))
     }
 
     protected fun onArchiveFileClick(fileDoc: FileDoc) {

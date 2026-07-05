@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <io.legado.app.ui.rss.read.VisibleWebView
+        <android.webkit.WebView
             android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
