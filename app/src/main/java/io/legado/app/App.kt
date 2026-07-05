@@ -10,6 +10,7 @@ import android.content.pm.ApplicationInfo
 import android.content.res.Configuration
 import android.os.Build
 import com.github.liuyueyi.quick.transfer.constants.TransType
+import com.google.android.material.color.DynamicColors
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.jeremyliao.liveeventbus.logger.DefaultLogger
 import com.script.rhino.RhinoScriptEngine
@@ -71,6 +72,8 @@ class App : Application() {
             .enableLogger(BuildConfig.DEBUG || AppConfig.recordLog)
             .setLogger(EventLogger())
         applyDayNight(this)
+        // Material 3 动态取色（Android 12+，低版本回退到 md_theme_* 色板）
+        DynamicColors.applyToActivitiesIfAvailable(this)
         registerActivityLifecycleCallbacks(LifecycleHelp)
         defaultSharedPreferences.registerOnSharedPreferenceChangeListener(AppConfig)
         DefaultData.upVersion()
