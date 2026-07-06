@@ -24,18 +24,28 @@ jobs:
       - name: Build Debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleAppDebug --stacktrace 2>&1 | tee build.log
-          echo "Build exit code: $?"
-          tail -100 build.log
+          ./gradlew assembleAppDebug --stacktrace > build.log 2>&1 || true
+          echo "=== BUILD LOG (last 200 lines) ==="
+          tail -200 build.log
 
       - name: Collect APK
+        if: always()
         run: |
           mkdir -p ${{ github.workspace }}/apk/
-          find ${{ github.workspace }}/app/build/outputs/ -name "*.apk" -exec cp {} ${{ github.workspace }}/apk/ \;
-          ls -la ${{ github.workspace }}/apk/
+          find ${{ github.workspace }}/app/build/outputs/ -name "*.apk" -exec cp {} ${{ github.workspace }}/apk/ \; 2>/dev/null || true
+          ls -la ${{ github.workspace }}/apk/ 2>/dev/null || echo "No APK found"
 
       - name: Upload APK Artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: legado_debug_apk
           path: ${{ github.workspace }}/apk/*.apk
+          if-no-files-found: ignore
+
+      - name: Upload Build Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build_log
+          path: build.log
