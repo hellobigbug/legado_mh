@@ -24,12 +24,13 @@ jobs:
       - name: Build Debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleAppDebug --stacktrace --info 2>&1 | tail -200
+          ./gradlew assembleAppDebug --stacktrace
 
       - name: Collect APK
         run: |
           mkdir -p ${{ github.workspace }}/apk/
-          find ${{ github.workspace }}/app/build/outputs/apk -name "*.apk" -exec cp {} ${{ github.workspace }}/apk/ \;
+          find ${{ github.workspace }}/app/build/outputs/ -name "*.apk" -exec cp {} ${{ github.workspace }}/apk/ \;
+          ls -la ${{ github.workspace }}/apk/
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
