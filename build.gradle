@@ -4,32 +4,28 @@ buildscript {
     ext{
         compile_sdk_version = 35
         build_tool_version = '34.0.0'
-//        kotlin_version = '1.9.22'
-//        ksp_version = "1.0.17"
-//        agp_version = '8.2.2'
-//        media3_version = "1.2.1"
-//        splitties_version = '3.0.0'
-//        room_version = '2.6.1'
+        kotlin_version = '2.1.0'
+        ksp_version = "1.0.29"
+        agp_version = '8.8.0'
+        media3_version = "1.5.1"
+        splitties_version = '3.0.0'
+        room_version = '2.6.1'
     }
-}
-
-plugins {
-    //id 'com.android.application' version "$agp_version" apply false
-    //id 'com.android.library' version "$agp_version" apply false
-    //id 'org.jetbrains.kotlin.android' version "$kotlin_version" apply false
-    //id 'com.google.devtools.ksp' version "$kotlin_version-$ksp_version" apply false
-    //id "de.undercouch.download" version "5.5.0" apply false
-    //id "com.google.gms.google-services" version "4.4.0" apply false
-
-    alias libs.plugins.android.application apply false
-    alias libs.plugins.android.library apply false
-    alias libs.plugins.kotlin.android apply false
-    alias libs.plugins.kotlin.parcelize apply false
-    alias libs.plugins.ksp apply false
-    alias libs.plugins.google.services apply false
-    alias libs.plugins.room apply false
-
-    alias libs.plugins.download apply false
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agp_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:$kotlin_version-$ksp_version"
+        classpath "com.google.gms:google-services:4.4.2"
+        classpath "androidx.room:room-gradle-plugin:$room_version"
+        classpath "de.undercouch:gradle-download-task:5.6.0"
+    }
 }
 
 tasks.register('clean', Delete) {

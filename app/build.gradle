@@ -1,18 +1,9 @@
-plugins {
-//    id "com.android.application"
-//    id 'org.jetbrains.kotlin.android'
-//    id 'kotlin-parcelize'
-//    //id 'kotlin-kapt'
-//    id 'com.google.devtools.ksp'
-//    id "com.google.gms.google-services"
-
-    alias libs.plugins.android.application
-    alias libs.plugins.kotlin.android
-    alias libs.plugins.kotlin.parcelize
-    alias libs.plugins.room
-    alias libs.plugins.ksp
-    alias libs.plugins.google.services
-}
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'androidx.room'
+apply plugin: 'com.google.devtools.ksp'
+apply plugin: 'com.google.gms.google-services'
 apply from: 'download.gradle'
 
 static def releaseTime() {

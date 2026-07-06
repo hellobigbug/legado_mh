@@ -1,7 +1,5 @@
-plugins {
-    alias libs.plugins.android.library
-    alias libs.plugins.kotlin.android
-}
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     compileSdk = compile_sdk_version
