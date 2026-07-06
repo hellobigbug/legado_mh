@@ -1,9 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'org.jetbrains.kotlin.android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'androidx.room'
-apply plugin: 'com.google.devtools.ksp'
-apply plugin: 'com.google.gms.google-services'
+plugins {
+    alias libs.plugins.android.application
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.kotlin.parcelize
+    alias libs.plugins.room
+    alias libs.plugins.ksp
+    alias libs.plugins.google.services
+}
 apply from: 'download.gradle'
 
 static def releaseTime() {
@@ -98,185 +100,95 @@ android {
             dimension "mode"
             manifestPlaceholders.put("APP_CHANNEL_VALUE", "app")
         }
-    }
-
-    android.applicationVariants.configureEach { variant ->
-        variant.outputs.configureEach {
-            def flavor = variant.productFlavors[0].name
-            outputFileName = "${name}_${flavor}_${defaultConfig.versionName}.apk"
-        }
-    }
-
-
-    room {
-        schemaDirectory "$projectDir/schemas"
-    }
-    // 设定Room的KSP参数
-    ksp {
-        arg("room.incremental", "true")
-        arg("room.expandProjection", "true")
-        arg("room.generateKotlin", "false")
-        //arg("room.schemaLocation", "$projectDir/schemas")
-
-    }
-
-    compileOptions {
-        // Flag to enable support for the new language APIs
-        coreLibraryDesugaringEnabled true
-        // Sets Java compatibility
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    packaging {
-        resources.excludes.add('META-INF/*')
-    }
-
-    sourceSets {
-        // Adds exported schema location as test app assets.
-        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
-    }
-    lint {
-        checkDependencies true
-    }
-    tasks.withType(JavaCompile).tap {
-        configureEach {
-            //options.compilerArgs << "-Xlint:unchecked"
+        google {
+            dimension "mode"
+            manifestPlaceholders.put("APP_CHANNEL_VALUE", "google")
         }
     }
 }
 
 dependencies {
-    //compileOnly "com.android.tools.build:gradle:$agp_version"
-    //noinspection GradleDependency,GradlePackageUpdate
-    //coreLibraryDesugaring('com.android.tools:desugar_jdk_libs_nio:2.0.4')
-    coreLibraryDesugaring(libs.desugar)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.bundles.androidTest)
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     //kotlin
-    //noinspection GradleDependency,DifferentStdlibGradleVersion
-    implementation(libs.kotlin.stdlib)
-    //Kotlin反射
-    //noinspection GradleDependency,DifferentStdlibGradleVersion
-    implementation(libs.kotlin.reflect)
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlin.reflect
 
+    //androidx
+    implementation libs.androidx.core.core
+    implementation libs.androidx.appcompat.appcompat
+    implementation libs.androidx.activity.activity
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment.fragment
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.swiperefreshlayout
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.viewpager2
+    implementation libs.androidx.webkit
+    implementation libs.material
 
-    //协程
-    //def coroutines_version = '1.7.3'
-    implementation(libs.bundles.coroutines)
-
-
-    //图像处理库Toolkit
-    implementation(libs.renderscript.intrinsics.replacement.toolkit)
-
-    //androidX
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat.appcompat)
-    implementation(libs.activity.ktx)
-    implementation(libs.fragment.ktx)
-    implementation(libs.preference.ktx)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.viewpager2)
-    implementation(libs.androidx.webkit)
+    //jetpack
+    implementation libs.lifecycle.common.java8
+    implementation libs.lifecycle.service
+    implementation libs.room.runtime
+    implementation libs.room.ktx
+    ksp libs.room.compiler
 
     //google
-    implementation(libs.material)
-    implementation(libs.flexbox)
-    implementation(libs.gson)
+    implementation libs.flexbox
+    implementation libs.gson
+    implementation libs.json.path
+    implementation libs.okhttp
+    implementation libs.protobuf.javalite
+    implementation libs.glide.glide
+    ksp libs.glide.compiler
+    implementation libs.glide.okhttp
+    implementation libs.glide.recyclerview
+    implementation libs.glide.compose
+    implementation libs.glide.ksp
+    implementation libs.glide.avif
+    implementation libs.avif
+    implementation libs.glide.svg
+    implementation libs.androidsvg
 
-    //lifecycle
-    implementation(libs.lifecycle.common.java8)
-    implementation(libs.lifecycle.service)
-
-    //media
-    implementation(libs.media.media)
-    // For media playback using ExoPlayer
-    implementation(libs.media3.exoplayer)
-    // For loading data using the OkHttp network stack
-    implementation(libs.media3.datasource.okhttp)
-    // For exposing and controlling media sessions
-    //implementation "androidx.media3:media3-session:$media3_version"
-
-    //Splitties
-    implementation(libs.splitties.appctx)
-    implementation(libs.splitties.systemservices)
-    implementation(libs.splitties.views)
-
-    //room sql语句不高亮解决方法https://issuetracker.google.com/issues/234612964#comment6
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    //kapt("androidx.room:room-compiler:$room_version")
-    ksp(libs.room.compiler)
-    androidTestImplementation(libs.room.testing)
-
-    //liveEventBus
-    implementation(libs.liveeventbus)
-
-    //规则相关
-    implementation(libs.jsoup)
-    implementation(libs.json.path)
-    implementation(libs.jsoupxpath)
-    implementation(project(path: ':modules:book'))
-    implementation implementation(project(path: ':modules:rhino'))
-
-    //JS rhino
-
-    //网络
-    implementation(libs.okhttp)
-    implementation(fileTree(dir: 'cronetlib', include: ['*.jar', '*.aar']))
-    implementation(libs.protobuf.javalite)
-
-    //Glide
-    implementation(libs.glide.glide)
-    implementation(libs.glide.okhttp)
-    ksp(libs.glide.ksp)
-
-    //Svg
-    implementation(libs.androidsvg)
-    //Glide svg plugin
-    implementation(libs.glide.svg)
-
-    //webServer
-    implementation(libs.nanohttpd.nanohttpd)
-    implementation(libs.nanohttpd.websocket)
-
-    //二维码
-    //noinspection GradleDependency
-    implementation(libs.zxing.lite)
-
-    //颜色选择
-    implementation(libs.colorpicker)
-
-    //压缩解压
+    //other
+    implementation libs.commons.text
+    implementation libs.jsoup
+    implementation libs.jsoupxpath
+    implementation libs.hutool.crypto
+    implementation libs.quick.chinese.transfer.core
+    implementation libs.colorpicker
+    implementation libs.zxing.lite
+    implementation libs.markwon.core
+    implementation libs.markwon.image.glide
+    implementation libs.markwon.ext.tables
+    implementation libs.markwon.html
+    implementation libs.nanohttpd.nanohttpd
+    implementation libs.nanohttpd.websocket
+    implementation libs.splitties.appctx
+    implementation libs.splitties.activities
+    implementation libs.splitties.systemservices
+    implementation libs.splitties.view
+    implementation libs.mozilla.rhino
+    implementation libs.coroutines.core
+    implementation libs.coroutines.android
+    implementation libs.liveeventbus
     implementation libs.libarchive
+    implementation libs.media.media
+    implementation libs.media3.datasource.okhttp
+    implementation libs.media3.exoplayer
+    implementation libs.media3.session
+    implementation libs.desugar
 
-    //apache
-    implementation(libs.commons.text)
-
-    //MarkDown
-    implementation(libs.markwon.core)
-    implementation(libs.markwon.image.glide)
-    implementation(libs.markwon.ext.tables)
-    implementation(libs.markwon.html)
-
-    //转换繁体
-    implementation(libs.quick.chinese.transfer.core)
-
-    //加解密类库,有些书源使用
-    //noinspection GradleDependency,GradlePackageUpdate
-    implementation(libs.hutool.crypto)
-
-    //firebase, 崩溃统计和性能统计
+    //firebase
     implementation platform(libs.firebase.bom)
     implementation libs.firebase.analytics
     implementation libs.firebase.perf
 
-    implementation libs.glide.recyclerview
-
-    //LeakCanary, 内存泄露检测
-    //debugImplementation('com.squareup.leakcanary:leakcanary-android:2.7')
-
-    //com.github.AmrDeveloper:CodeView代码编辑已集成到应用内
-    //epubLib集成到应用内
+    //test
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation libs.androidx.runner
+    androidTestImplementation libs.fragment.testing
 }
