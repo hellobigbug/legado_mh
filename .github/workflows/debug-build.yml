@@ -24,7 +24,9 @@ jobs:
       - name: Build Debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleAppDebug --stacktrace
+          ./gradlew assembleAppDebug --stacktrace 2>&1 | tee build.log
+          echo "Build exit code: $?"
+          tail -100 build.log
 
       - name: Collect APK
         run: |
