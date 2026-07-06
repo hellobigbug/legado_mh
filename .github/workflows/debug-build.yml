@@ -24,7 +24,7 @@ jobs:
       - name: Build Debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleAppDebug --stacktrace > build.log 2>&1 || true
+          ./gradlew assembleAppDebug --stacktrace 2>&1 | tee build.log
           echo "=== BUILD LOG (last 200 lines) ==="
           tail -200 build.log
 
